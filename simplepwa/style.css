@@ -30,3 +30,35 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
+
+#settings > h2 {
+	text-align: center;
+}
+
+#wifi-card {
+	margin-left: 2%;
+}
+
+.demo-card-square.mdl-card {
+	width: 320px;
+	height: 320px;
+  }
+
+.demo-card-square > .mdl-card__title {
+	color: #fff;
+	background:
+	  url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+  }
+
+  #settings_list {
+	margin-left: 2%;
+  }
+
+  #settings > table {
+	margin-left: 2%;
+  }
+
+  #settings > table > tbody > tr > td {
+	padding-right: 20px;
+	text-align: center;
+  }
