@@ -1,0 +1,11 @@
+[Unit]
+   Description=Bootup Logo
+   Wants=sysinit.target
+   After=sysinit.target
+[Service]
+   Type=simple
+   User=pi
+   WorkingDirectory=/home/pi/AviationAssistantV2/dump1090
+   ExecStart=/bin/bash start_dump1090.sh
+[Install]
+   WantedBy=sysinit.target

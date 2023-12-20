@@ -1,0 +1,13 @@
+[Unit]
+Description=yourScript
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+WorkingDirectory=/home/pi/AviationAssistantV2/backend/python
+
+ExecStop=/usr/bin/python3 clear.py
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+   Description=Bootup Logo
+   Wants=sysinit.target
+   After=sysinit.target
+[Service]
+   Type=simple
+   User=pi
+   WorkingDirectory=/home/pi/AviationAssistantV2/backend/python
+   ExecStart=/usr/bin/python3 startup.py
+   ExecStop=/usr/bin/python3 clear.py
+[Install]
+   WantedBy=sysinit.target
