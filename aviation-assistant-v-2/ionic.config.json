@@ -1,0 +1,7 @@
+{
+  "name": "Aviation Assistant V2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
