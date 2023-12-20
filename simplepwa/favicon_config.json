@@ -4,7 +4,7 @@
 	"design": {
 		"ios": {
 			"pictureAspect": "backgroundAndMargin",
-			"backgroundColor": "#000000",
+			"backgroundColor": "#ffffff",
 			"margin": "18%",
 			"assets": {
 				"ios6AndPriorIcons": true,
