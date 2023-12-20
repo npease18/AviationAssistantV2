@@ -66,3 +66,7 @@ html, body {
 	width: 200px;
 	margin: auto;
   }
+
+  #buttons_card {
+	width: 260px;
+  }
