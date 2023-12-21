@@ -58,7 +58,7 @@ def poweroff():
     return "OK"
 
 @app.route('/update',methods = ['GET'])
-def poweroff():
+def update():
     os.popen("cd /home/pi/AviationAssistant && git pull && sudo rm -r /var/www/html/* && sudo cp -r simplepwa/* /var/www/html && sudo systemctl restart backend.service")
     return "OK"
 
