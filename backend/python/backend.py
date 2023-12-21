@@ -4,6 +4,8 @@ import os
 app = Flask(__name__)
 name = "Aviation Assistant v2"
 software_version = "v.2.7.2-aaf68f9bf2b51806300f7830f67f5254f04a90a2"
+tar1090_version = "N/A"
+dump1090_version = "N/A"
 
 @app.route('/brightness',methods = ['POST'])
 def brightness():
@@ -17,22 +19,29 @@ def brightness():
 
 @app.route('/information',methods = ['GET'])
 def information():
-  ip = os.popen("ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'").read()
-  wifi_ip, bluetooth_ip, dump1090_version, bt_connection, tar1090_version = "N/A"
+  ip = os.popen("ifdata -pa wlan0").read()
+  bt_ip = os.popen("ifdata -pa pan0").read()
+  bt_connection = os.popen("hcitool con").read()
+  if '>' in BT_DEVICE.split():
+    BT_DEVICE = True
+  else:
+    BT_DEVICE = False
+   
+  
   json = {
     "name": name,
     "software_version": version,
     "wifi_ip": ip,
     "bluetooth_ip": bt_ip,
     "dump1090_version": dump1090_ver,
-    "bt_connection": bt_connection,
+    "bt_connection": "CONNECTED" if BT_DEVICE else "N/A",
     "tar1090_version": tar1090_version
   }
   return json
 
 @app.route('/alive',methods = ['GET'])
 def alive():
-    return True
+    return "alive"
 
 
 @app.after_request
