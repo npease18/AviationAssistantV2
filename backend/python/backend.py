@@ -1,5 +1,6 @@
 from flask import Flask, json, request
 import os
+import re
 
 app = Flask(__name__)
 name = "Aviation Assistant v2"
@@ -22,10 +23,12 @@ def information():
   ip = os.popen("ifdata -pa wlan0").read()
   bt_ip = os.popen("ifdata -pa pan0").read()
   bt_connection = os.popen("hcitool con").read()
+  wifi_network = os.popen("iwgetid").read()
   if '>' in bt_connection .split():
     bt_connection  = True
   else:
     bt_connection = False
+   wifi_network = re.findall('"([^"]*)"', wifi_network)
    
   
   json = {
