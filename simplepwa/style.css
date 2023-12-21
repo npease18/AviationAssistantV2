@@ -17,8 +17,6 @@ body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  height: 100%;
-  width: 100%;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   user-select: none; /* Non-prefixed version, currently */
