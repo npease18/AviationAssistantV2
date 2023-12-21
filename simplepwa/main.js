@@ -45,3 +45,15 @@ function updateSettings() {
     }
     xhr.send();    
 }
+
+function sendcommand(command) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://aa.local:5000/"+command, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+
+        }
+    }
+    xhr.send();    
+}
