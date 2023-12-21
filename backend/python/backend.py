@@ -4,7 +4,7 @@ import re
 
 app = Flask(__name__)
 name = "Aviation Assistant v2"
-software_version = "v.2.7.2-aaf68f9bf2b51806300f7830f67f5254f04a90a2"
+software_version = "v.1.0.0"
 tar1090_version = "N/A"
 dump1090_version = "N/A"
 
@@ -47,6 +47,10 @@ def information():
 def alive():
     return "alive"
 
+@app.route('/reboot',methods = ['GET'])
+def reboot():
+    os.popen("sudo reboot")
+    return "OK"
 
 @app.after_request
 def after_request(response):
