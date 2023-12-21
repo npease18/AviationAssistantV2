@@ -33,7 +33,7 @@ def information():
     "software_version": software_version,
     "wifi_ip": ip,
     "bluetooth_ip": bt_ip,
-    "dump1090_version": dump1090_ver,
+    "dump1090_version": dump1090_version,
     "bt_connection": "CONNECTED" if bt_connection  else "N/A",
     "tar1090_version": tar1090_version
   }
