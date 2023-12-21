@@ -53,7 +53,7 @@ def reboot():
     return "OK"
 
 @app.route('/poweroff',methods = ['GET'])
-def reboot():
+def poweroff():
     os.popen("sudo poweroff")
     return "OK"
 
