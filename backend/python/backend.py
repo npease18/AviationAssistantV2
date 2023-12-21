@@ -30,7 +30,7 @@ def information():
   
   json = {
     "name": name,
-    "software_version": version,
+    "software_version": software_version,
     "wifi_ip": ip,
     "bluetooth_ip": bt_ip,
     "dump1090_version": dump1090_ver,
