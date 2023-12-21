@@ -22,10 +22,10 @@ def information():
   ip = os.popen("ifdata -pa wlan0").read()
   bt_ip = os.popen("ifdata -pa pan0").read()
   bt_connection = os.popen("hcitool con").read()
-  if '>' in BT_DEVICE.split():
-    BT_DEVICE = True
+  if '>' in bt_connection .split():
+    bt_connection  = True
   else:
-    BT_DEVICE = False
+    bt_connection = False
    
   
   json = {
@@ -34,7 +34,7 @@ def information():
     "wifi_ip": ip,
     "bluetooth_ip": bt_ip,
     "dump1090_version": dump1090_ver,
-    "bt_connection": "CONNECTED" if BT_DEVICE else "N/A",
+    "bt_connection": "CONNECTED" if bt_connection  else "N/A",
     "tar1090_version": tar1090_version
   }
   return json
