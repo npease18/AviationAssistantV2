@@ -52,7 +52,9 @@ function sendcommand(command) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-
+            if (command == "update" && xhr.response == "OK") {
+                location.reload()
+            }
         }
     }
     xhr.send();    
