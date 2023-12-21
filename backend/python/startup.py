@@ -76,21 +76,41 @@ draw.text(((128-11*8)//2, 10), "STARTING UP", font=font, fill=255)
 disp.image(image)
 disp.show()
 
+counter = 0
 while True:
-	# Stats
-	IP = subprocess.check_output("hostname -I | cut -d' ' -f1", shell=True).decode("utf-8")
-	UPTIME = subprocess.check_output("uptime", shell=True).decode("utf-8").split(" ")[4][:-1]
-	if UPTIME == "min":
-		UPTIME = str(subprocess.check_output("uptime", shell=True).decode("utf-8").split(" ")[3]) + " min"
-	AIRCRAFT = 0
-	for i in requests.get('http://127.0.0.1/tar1090/data/aircraft.json').json()['aircraft']:
-        	AIRCRAFT+=1
+	if counter < 5:
+		# Stats
+		IP = subprocess.check_output("ifdata -pa wlan0", shell=True).decode("utf-8")
+		UPTIME = subprocess.check_output("uptime", shell=True).decode("utf-8").split(" ")[4][:-1]
+		if UPTIME == "min":
+			UPTIME = str(subprocess.check_output("uptime", shell=True).decode("utf-8").split(" ")[3]) + " min"
+		AIRCRAFT = 0
+		for i in requests.get('http://127.0.0.1/tar1090/data/aircraft.json').json()['aircraft']:
+        		AIRCRAFT+=1
 
-	# Display image.
-	draw.rectangle((0, 0, width, height), outline=0, fill=0)
-	draw.text((5,0), "IP: "+IP, font=def_font, fill=255)
-	draw.text((5,9), "AIRCRAFT: "+str(AIRCRAFT), font=def_font, fill=255)
-	draw.text((5,18), "UPTIME: "+UPTIME, font=def_font, fill=255)
+		# Display image.
+		draw.rectangle((0, 0, width, height), outline=0, fill=0)
+		draw.text((0,0), "WIFI IP: "+IP, font=def_font, fill=255)
+		draw.text((0,9), "AIRCRAFT: "+str(AIRCRAFT), font=def_font, fill=255)
+		draw.text((0,18), "UPTIME: "+UPTIME, font=def_font, fill=255)
+	else:
+		# Stats
+		IP = subprocess.check_output("ifdata -pa pan0", shell=True).decode("utf-8")
+		BT_DEVICE = subprocess.check_output("hcitool con", shell=True).decode("utf-8")
+		if '>' in BT_DEVICE.split():
+			BT_DEVICE = True
+		else:
+			BT_DEVICE = False
+		HOSTNAME = subprocess.check_output("hostname", shell=True).decode("utf-8")
+
+                # Display image.
+		draw.rectangle((0, 0, width, height), outline=0, fill=0)
+		draw.text((0,0), "BT IP: "+IP, font=def_font, fill=255)
+		draw.text((0,9), "DEVICE: "+"CONNECTED" if BT_DEVICE else "DEVICE: N/A", font=def_font, fill=255)
+		draw.text((0,18), "HOSTNAME: "+HOSTNAME, font=def_font, fill=255)
+	if counter == 10:
+		counter = 0
 	disp.image(image)
 	disp.show()
 	time.sleep(1)
+	counter += 1
