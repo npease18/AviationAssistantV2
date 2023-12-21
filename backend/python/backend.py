@@ -52,6 +52,11 @@ def reboot():
     os.popen("sudo reboot")
     return "OK"
 
+@app.route('/poweroff',methods = ['GET'])
+def reboot():
+    os.popen("sudo poweroff")
+    return "OK"
+
 @app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')
