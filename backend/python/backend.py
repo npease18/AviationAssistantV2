@@ -31,8 +31,8 @@ def information():
   json = {
     "name": name,
     "software_version": software_version,
-    "wifi_ip": ip[:-2],
-    "bluetooth_ip": bt_ip[:-2],
+    "wifi_ip": ip[:-1],
+    "bluetooth_ip": bt_ip[:-1],
     "dump1090_version": dump1090_version,
     "bt_connection": "CONNECTED" if bt_connection  else "N/A",
     "tar1090_version": tar1090_version
