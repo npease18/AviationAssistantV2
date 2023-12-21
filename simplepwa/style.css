@@ -1,72 +1,99 @@
-html, body {
-	background-color: white;
-	color: black;
-	font-family: helvetica, arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.5;
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	overflow: hidden;
+@font-face {
+	font-family: SF-Pro;
+	src: url("./SF-Pro.ttf");
+  }  
+
+html * {
+	font-family: SF-Pro !important;
+}
+
+html,
+body {
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  user-select: none; /* Non-prefixed version, currently */
 }
 
 #header {
-	position: absolute;
-	display: block;
-	left: 2%;
-	top: 10px;
-	border-radius: 8px;
-	z-index: 1;
-	background-color: rgba(255,255,255,.7);	
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	padding: 10px;
+  position: absolute;
+  display: block;
+  left: 2%;
+  top: 10px;
+  border-radius: 8px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
 }
 
 #main_tab {
-	height: 100%;
+  height: 100%;
 }
 
 #main_tab > iframe {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 #settings > h2 {
-	text-align: center;
+  text-align: center;
 }
 
 #wifi-card {
-	margin-left: 2%;
+  margin-left: 2%;
 }
 
 .demo-card-square.mdl-card {
-	width: 320px;
-	height: 320px;
-  }
+  width: 320px;
+  height: 320px;
+}
 
 .demo-card-square > .mdl-card__title {
-	color: #fff;
-	background:
-	  url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
-  }
+  color: #fff;
+  background: url("../assets/demos/dog.png") bottom right 15% no-repeat #46b6ac;
+}
 
-  #settings_list {
-	margin-left: 2%;
-  }
+#settings_list {
+  margin-left: 2%;
+}
 
+#settings > table > tbody > tr > td {
+  padding-right: 10px;
+  text-align: center;
+  padding-left: 10px;
+}
 
+#buttons_card > button {
+  width: 200px;
+  margin: auto;
+}
 
-  #settings > table > tbody > tr > td {
-	padding-right: 10px;
+#buttons_card {
+  width: 260px;
+}
+
+#loading_icon {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loading {
+	position: absolute;
+	left: 50%;
+	top: 50%;
 	text-align: center;
-	padding-left: 10px;
-  }
-
-  #buttons_card > button {
-	width: 200px;
-	margin: auto;
-  }
-
-  #buttons_card {
-	width: 260px;
-  }
+	transform: translate(-50%, -50%);
+}
