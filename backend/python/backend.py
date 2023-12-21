@@ -38,7 +38,8 @@ def information():
     "bluetooth_ip": bt_ip[:-1],
     "dump1090_version": dump1090_version,
     "bt_connection": "CONNECTED" if bt_connection  else "N/A",
-    "tar1090_version": tar1090_version
+    "tar1090_version": tar1090_version,
+    "wifi_network": wifi_network
   }
   return json
 
