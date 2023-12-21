@@ -28,7 +28,7 @@ def information():
     bt_connection  = True
   else:
     bt_connection = False
-   wifi_network = re.findall('"([^"]*)"', wifi_network)
+  wifi_network = re.findall('"([^"]*)"', wifi_network)
    
   
   json = {
