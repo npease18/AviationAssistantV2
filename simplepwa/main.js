@@ -1,11 +1,13 @@
 function main() {
     document.getElementById("main_tab").style.display = "block";
     document.getElementById("settings").style.display = "none";
+    document.getElementById("header").style.left = "210px"
 }
 
 function settings() {
     document.getElementById("main_tab").style.display = "none";
     document.getElementById("settings").style.display = "block";
+    document.getElementById("header").style.left = "2%"
 }
 
 function onload() {
