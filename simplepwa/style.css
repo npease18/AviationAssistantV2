@@ -35,7 +35,7 @@ body {
 #header {
   position: absolute;
   display: block;
-  left: 2%;
+  left: 210px;
   top: 10px;
   border-radius: 8px;
   z-index: 1;
