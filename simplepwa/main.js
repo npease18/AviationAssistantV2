@@ -59,17 +59,17 @@ function sendcommand(command) {
                 sendcommand("reboot")
                 setTimeout(function() {
                     location.reload()
-                }, 5000)
+                }, 3000)
             } else if (command == "reboot" && xhr.response == "OK") {
                 screenMessage("Rebooting")
                 setTimeout(function() {
                     location.reload()
-                }, 5000)
+                }, 3000)
             } else if (command = "poweroff"  && xhr.response == "OK") {
                 screenMessage("Shutting Down")
                 setTimeout(function() {
                     location.reload()
-                }, 5000)
+                }, 3000)
             }
         }
     }

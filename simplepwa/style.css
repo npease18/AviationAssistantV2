@@ -12,6 +12,10 @@ html * {
   width: 320px;
 }
 
+.command-button {
+  margin-right: 10px;
+}
+
 html,
 body {
   background-color: white;
@@ -74,7 +78,7 @@ body {
 #settings > table > tbody > tr > td {
   padding-right: 10px;
   text-align: center;
-  padding-left: 10px;
+  padding-left: 30px;
 }
 
 #buttons_card > button {

@@ -40,16 +40,16 @@
     <script defer src="./main.js"></script>
   </head>
   <body onload="onload()">
-	<div id="loading" >
+	<div id="loading" style="display: none">
 		<img id="loading_icon" src="images/loading.gif">
 		<br>Connecting to Aviation Assistant<br>Please Wait.
 	</div>
-    <div id="header" style="display: none">
+    <div id="header">
       <button class="mdl-button mdl-js-button mdl-button--raised" onclick="main()">tar1090</button>
       <button class="mdl-button mdl-js-button mdl-button--raised" onclick="window.location.href = 'shortcuts://run-shortcut?name=OpenADSBWebLaunch'">OpenADSB</button>
       <button class="mdl-button mdl-js-button mdl-button--raised" onclick="settings()">Settings</button>
     </div>
-    <div id="main_tab" style="display: none">
+    <div id="main_tab">
       <iframe src="http://aa.local/tar1090"></iframe>
     </div>
     <div id="settings" style="display: none">
@@ -98,19 +98,14 @@
             </table>
           </td>
           <td>
-            <div class="demo-card-square mdl-card mdl-shadow--2dp" id="buttons_card">
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="sendcommand('reboot')">Reboot</button><br />
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="sendcommand('poweroff')">Poweroff</button><br />
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="sendcommand('update')">Update</button><br />
-              <button class="mdl-button mdl-js-button mdl-button--raised">Licenses / Credits</button>
-            </div>
-          </td>
-          <td>
             <img src="images/logo.jpg" id="settings_logo"><br>
             Nicholas Pease<br>
             &copy; 2023, All Rights Reserved<br><br>
-            dump1090-fa Copyright &copy; 2012 <br>Salvatore Sanfilippo antirez@gmail.com<br><br>
-            tar1090 Modified and developed by <br>Matthias Wirth matthias.wirth@gmail.com
+            dump1090-fa Copyright &copy; 2012 Salvatore Sanfilippo (antirez@gmail.com)<br><br>
+            tar1090 Modified and developed by Matthias Wirth (matthias.wirth@gmail.com)<br><br><br>
+            <button class="command-button mdl-button mdl-js-button mdl-button--raised" onclick="sendcommand('reboot')">Reboot</button>
+            <button class="command-button mdl-button mdl-js-button mdl-button--raised" onclick="sendcommand('poweroff')">Poweroff</button>
+            <button class="command-button mdl-button mdl-js-button mdl-button--raised" onclick="sendcommand('update')">Update</button>
           </td>
         </tr>
       </table>
