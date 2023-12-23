@@ -56,8 +56,8 @@ function sendcommand(command) {
         if (xhr.readyState === 4) {
             if (command == "update" && xhr.response == "OK") {
                 screenMessage("Updating")
-                sendcommand("reboot")
                 setTimeout(function() {
+                    sendcommand("reboot")
                     location.reload()
                 }, 3000)
             } else if (command == "reboot" && xhr.response == "OK") {
