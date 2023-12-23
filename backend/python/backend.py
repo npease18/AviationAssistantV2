@@ -5,18 +5,8 @@ import re
 app = Flask(__name__)
 name = "Aviation Assistant v2"
 software_version = "v.1.0.0"
-tar1090_version = "N/A"
-dump1090_version = "N/A"
-
-@app.route('/brightness',methods = ['POST'])
-def brightness():
-   if request.method == 'POST':
-      json = request.get_json()
-      if json['level'] < 255 and json['level'] > 15:
-        status = os.popen('echo '+str(json['level'])+' > /sys/class/backlight/rpi_backlight/brightness').read()
-      elif json['level'] == 256:
-        status = os.popen('sudo cat /sys/class/backlight/rpi_backlight/brightness').read()
-      return status
+tar1090_version = "dafba99"
+dump1090_version = "a80ba8f"
 
 @app.route('/information',methods = ['GET'])
 def information():
@@ -37,7 +27,7 @@ def information():
     "wifi_ip": ip[:-1],
     "bluetooth_ip": bt_ip[:-1],
     "dump1090_version": dump1090_version,
-    "bt_connection": "CONNECTED" if bt_connection  else "N/A",
+    "bt_connection": "CONNECTED" if bt_connection  else "DISCONNECTED",
     "tar1090_version": tar1090_version,
     "wifi_network": wifi_network[0]
   }

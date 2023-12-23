@@ -1,6 +1,7 @@
 @font-face {
 	font-family: SF-Pro;
 	src: url("./SF-Pro.ttf");
+	font-display: swap;
   }  
 
 html * {
