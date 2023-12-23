@@ -4,7 +4,7 @@ import re
 
 app = Flask(__name__)
 name = "Aviation Assistant v2"
-software_version = "v.1.0.0"
+software_version = "v.1.0.1"
 tar1090_version = "dafba99"
 dump1090_version = "a80ba8f"
 
