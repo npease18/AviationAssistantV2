@@ -20,7 +20,9 @@ function onload() {
             updateSettings()
             setInterval(updateSettings, 10000)
         } else if (xhr.readyState == 4) {
-            setTimeout(onload(), 10000)
+            setTimeout(function() {
+                onload()
+            }, 1000)
         }
     }
     xhr.send();   
@@ -53,9 +55,37 @@ function sendcommand(command) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (command == "update" && xhr.response == "OK") {
-                location.reload()
+                screenMessage("Updating")
+                sendcommand("reboot")
+                setTimeout(function() {
+                    location.reload()
+                }, 5000)
+            } else if (command == "reboot" && xhr.response == "OK") {
+                screenMessage("Rebooting")
+                setTimeout(function() {
+                    location.reload()
+                }, 5000)
+            } else if (command = "poweroff"  && xhr.response == "OK") {
+                screenMessage("Shutting Down")
+                setTimeout(function() {
+                    location.reload()
+                }, 5000)
             }
         }
     }
     xhr.send();    
 }
+
+function screenMessage(text) {
+      var snackbarContainer = document.querySelector('#toasts');
+      var data = {message: text};
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+}
+
+function wait(ms){
+    var start = new Date().getTime();
+    var end = start;
+    while(end < start + ms) {
+      end = new Date().getTime();
+   }
+ }
