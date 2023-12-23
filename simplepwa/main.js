@@ -59,7 +59,7 @@ function sendcommand(command) {
                 setTimeout(function() {
                     sendcommand("reboot")
                     location.reload()
-                }, 3000)
+                }, 5000)
             } else if (command == "reboot" && xhr.response == "OK") {
                 screenMessage("Rebooting")
                 setTimeout(function() {
