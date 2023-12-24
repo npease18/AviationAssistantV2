@@ -40,16 +40,16 @@
     <script defer src="./main.js"></script>
   </head>
   <body onload="onload()">
-	<div id="loading" style="display: none">
+	<div id="loading">
 		<img id="loading_icon" src="images/loading.gif">
 		<br>Connecting to Aviation Assistant<br>Please Wait.
 	</div>
-    <div id="header" style="left: 210px;">
+    <div id="header" style="left: 210px;" style="display: none">
       <button class="mdl-button mdl-js-button mdl-button--raised" onclick="main()">tar1090</button>
       <button class="mdl-button mdl-js-button mdl-button--raised" onclick="window.location.href = 'shortcuts://run-shortcut?name=OpenADSBWebLaunch'">OpenADSB</button>
       <button class="mdl-button mdl-js-button mdl-button--raised" onclick="settings()">Settings</button>
     </div>
-    <div id="main_tab">
+    <div id="main_tab" style="display: none">
       <iframe src="http://aa.local/tar1090"></iframe>
     </div>
     <div id="settings" style="display: none">
