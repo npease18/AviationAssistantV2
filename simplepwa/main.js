@@ -83,11 +83,3 @@ function screenMessage(text) {
       var data = {message: text};
       snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
-
-function wait(ms){
-    var start = new Date().getTime();
-    var end = start;
-    while(end < start + ms) {
-      end = new Date().getTime();
-   }
- }
