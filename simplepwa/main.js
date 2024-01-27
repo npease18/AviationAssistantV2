@@ -11,7 +11,10 @@ function settings() {
 }
 
 function onload() {
-    var xhr = new XMLHttpRequest();
+    document.getElementById("loading").style.display = "none"
+    document.getElementById("header").style.display = "block"
+    document.getElementById("main_tab").style.display = "block"
+    /*var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://aa.local:5000/alive", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
@@ -27,7 +30,7 @@ function onload() {
             }, 1000)
         }
     }
-    xhr.send();   
+    xhr.send();  */
 }
 
 function updateSettings() {

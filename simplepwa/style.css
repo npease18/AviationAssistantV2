@@ -5,7 +5,7 @@
   }  
 
 html * {
-	font-family: SF-Pro !important;
+	font-family: SF-Pro !important MaterialIcons;
 }
 
 #settings_logo {
@@ -14,6 +14,14 @@ html * {
 
 .command-button {
   margin-right: 10px;
+}
+
+#header > button {
+  margin-right: 15px;
+}
+
+#header > button:nth-last-child(1) {
+  margin-right: 0px;
 }
 
 html,
@@ -34,13 +42,61 @@ body {
 
 #header {
   position: absolute;
-  display: block;
-  top: 10px;
-  border-radius: 8px;
   z-index: 1;
-  background-color: rgba(255, 255, 255, 0.7);
+  width: 800px;
+  top: 10px;
+}
+
+#header_nav {
+  display: inline-block;
+  position:relative;
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
   padding: 10px;
+  top: -30px;
+}
+
+#header_atc {
+  display: inline-block;
+  position: relative;
+  left: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#audioControl_CurrentFeedName {
+  font-size: 20px;
+  margin-left: 15px;
+  position: relative;
+  top: 5px;
+}
+
+#audioControl_CurrentFeedStatus {
+  font-size: 42px;
+  line-height: 8px;
+  margin-left: 15px;
+  position: relative;
+  top: 5px;
+}
+
+#audioControl_CurrentFeedStatusText {
+  margin-left: 5px;
+  line-height: 8px;
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+}
+
+#audioControl_CurrentFeedTimeFormatting {
+  margin-left: 3px;
+  line-height: 8px;
+  font-size: 12px;
+  position: relative;
+  top: -5px;
 }
 
 #main_tab {
