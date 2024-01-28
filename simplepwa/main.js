@@ -1,3 +1,57 @@
+ATC_AIRPORTS = {}
+var usStates = {
+    'Alabama': 'AL',
+    'Alaska': 'AK',
+    'Arizona': 'AZ',
+    'Arkansas': 'AR',
+    'California': 'CA',
+    'Colorado': 'CO',
+    'Connecticut': 'CT',
+    'Delaware': 'DE',
+    'Florida': 'FL',
+    'Georgia': 'GA',
+    'Hawaii': 'HI',
+    'Idaho': 'ID',
+    'Illinois': 'IL',
+    'Indiana': 'IN',
+    'Iowa': 'IA',
+    'Kansas': 'KS',
+    'Kentucky': 'KY',
+    'Louisiana': 'LA',
+    'Maine': 'ME',
+    'Maryland': 'MD',
+    'Massachusetts': 'MA',
+    'Michigan': 'MI',
+    'Minnesota': 'MN',
+    'Mississippi': 'MS',
+    'Missouri': 'MO',
+    'Montana': 'MT',
+    'Nebraska': 'NE',
+    'Nevada': 'NV',
+    'New Hampshire': 'NH',
+    'New Jersey': 'NJ',
+    'New Mexico': 'NM',
+    'New York': 'NY',
+    'North Carolina': 'NC',
+    'North Dakota': 'ND',
+    'Ohio': 'OH',
+    'Oklahoma': 'OK',
+    'Oregon': 'OR',
+    'Pennsylvania': 'PA',
+    'Rhode Island': 'RI',
+    'South Carolina': 'SC',
+    'South Dakota': 'SD',
+    'Tennessee': 'TN',
+    'Texas': 'TX',
+    'Utah': 'UT',
+    'Vermont': 'VT',
+    'Virginia': 'VA',
+    'Washington': 'WA',
+    'West Virginia': 'WV',
+    'Wisconsin': 'WI',
+    'Wyoming': 'WY'
+  };
+
 function main() {
     document.getElementById("main_tab").style.display = "block";
     document.getElementById("settings").style.display = "none";
@@ -14,6 +68,7 @@ function onload() {
     document.getElementById("loading").style.display = "none"
     document.getElementById("header").style.display = "block"
     document.getElementById("main_tab").style.display = "block"
+    liveATCPreload()
     /*var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://aa.local:5000/alive", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -85,4 +140,33 @@ function screenMessage(text) {
       var snackbarContainer = document.querySelector('#toasts');
       var data = {message: text};
       snackbarContainer.MaterialSnackbar.showSnackbar(data);
+}
+
+function liveATCPreload() {
+    xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://server1.nicholaspease.com/reports/liveatc.json", true);
+   
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status != 0) {
+          ATC_AIRPORTS = JSON.parse(xhr.response)
+          selectState()
+        } 
+    }
+    xhr.send();
+}
+
+function selectState() {
+    for (state in ATC_AIRPORTS) {
+        node = document.createElement("div")
+        numOfFeeds = 0
+        numofAirports = 0
+        for (i in ATC_AIRPORTS[state].airports) {
+            numofAirports++
+            for (j in ATC_AIRPORTS[state].airports[i])
+                for (k in ATC_AIRPORTS[state].airports[i].feeds)
+                    numOfFeeds++
+        }
+        node.innerHTML = '<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+usStates[state]+'</span><span style="font-size: 24px">'+state+'</span><span class="mdl-list__item-sub-title">'+numofAirports+' Airports,<span style="margin-left: 5px;">'+numOfFeeds+' Feeds</span></span></span></li>'
+        document.getElementById("ATC_Data_List").appendChild(node)
+    }
 }

@@ -57,48 +57,6 @@ body {
   top: -30px;
 }
 
-#header_atc {
-  display: inline-block;
-  position: relative;
-  left: 30px;
-  background-color: rgba(255, 255, 255, 0.8);
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#audioControl_CurrentFeedName {
-  font-size: 20px;
-  margin-left: 15px;
-  position: relative;
-  top: 5px;
-}
-
-#audioControl_CurrentFeedStatus {
-  font-size: 42px;
-  line-height: 8px;
-  margin-left: 15px;
-  position: relative;
-  top: 5px;
-}
-
-#audioControl_CurrentFeedStatusText {
-  margin-left: 5px;
-  line-height: 8px;
-  font-size: 12px;
-  position: relative;
-  top: -5px;
-}
-
-#audioControl_CurrentFeedTimeFormatting {
-  margin-left: 3px;
-  line-height: 8px;
-  font-size: 12px;
-  position: relative;
-  top: -5px;
-}
-
 #main_tab {
   height: 100%;
 }
@@ -159,4 +117,86 @@ body {
 	top: 50%;
 	text-align: center;
 	transform: translate(-50%, -50%);
+}
+
+/* ATC DATA */
+#header_atc {
+  display: inline-block;
+  position: relative;
+  left: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#audioControl_CurrentFeedName {
+  font-size: 20px;
+  margin-left: 15px;
+  position: relative;
+  top: 5px;
+}
+
+#audioControl_CurrentFeedStatus {
+  font-size: 42px;
+  line-height: 8px;
+  margin-left: 15px;
+  position: relative;
+  top: 5px;
+}
+
+#audioControl_CurrentFeedStatusText {
+  margin-left: 5px;
+  line-height: 8px;
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+}
+
+#audioControl_CurrentFeedTimeFormatting {
+  margin-left: 3px;
+  line-height: 8px;
+  font-size: 12px;
+  position: relative;
+  top: -5px;
+}
+
+#sidebar {
+  position: absolute;
+  top: 15px;
+  left: calc(100% - 475px);
+  height: calc(100% - 30px);
+  width: 450px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  line-height: 30px;
+}
+
+.ATC_State {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 8px;
+  width: 90px;
+  margin: 15px;
+  text-align: center;
+  padding: 10px;
+  display: inline-block;
+}
+
+.ATC_State_Name {
+  font-size: 26px;
+}
+
+#ATC_Data {
+    overflow: auto;
+    max-height: 100%;
+    height: calc(100% - 100px);
+}
+
+#ATC_Data_List {
+  margin-top: 0px;
+  padding-top: 0px;
+  height: 100%;
 }

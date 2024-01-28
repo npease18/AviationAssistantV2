@@ -40,7 +40,18 @@
     <script defer src="./main.js"></script>
   </head>
   <body onload="onload()">
-	<div id="loading">
+  <div id="sidebar">
+    <i class="material-icons" style="font-size: 30px;margin: 15px;">arrow_back_ios_new</i>
+    <span style="font-size:30px;font-weight: bold;margin: 15px;">Aircraft Radio</span>
+    <span style="font-size: 15px;margin: auto;">Powered By LiveATC</span>
+    <hr>
+    <div id="ATC_Data">
+      <ul class="mdl-list" id="ATC_Data_List">
+        
+      </ul>
+    </div>
+  </div>
+	<div id="loading" style="display: none">
 		<img id="loading_icon" src="images/loading.gif">
 		<br>Connecting to Aviation Assistant<br>Please Wait.
 	</div>
@@ -51,7 +62,7 @@
               <button class="mdl-button mdl-js-button mdl-button--raised" onclick="liveATC()">LiveATC</button>
               <button class="mdl-button mdl-js-button mdl-button--raised" onclick="settings()">Settings</button>
             </div>
-            <div id="header_atc">
+            <div id="header_atc" style="visibility: hidden">
              <table>
               <tr>
                 <td> 
@@ -68,7 +79,7 @@
             </div>
     </div>
     <div id="main_tab" style="display: none">
-      <iframe src="http://aa.local/tar1090"></iframe>
+      <!-- <iframe src="http://aa.local/tar1090"></iframe> -->
     </div>
     <div id="settings" style="display: none">
       <h2>Settings</h2>
