@@ -142,6 +142,24 @@ function screenMessage(text) {
       snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
 
+function HHMMSS(time) {
+    var sec_num = parseInt(time, 10); // don't forget the second param
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    if (seconds < 10) {
+        seconds = "0" + seconds;
+    }
+    return hours + ':' + minutes + ':' + seconds;
+}
+
 function liveATCPreload() {
     xhr = new XMLHttpRequest();
     xhr.open("GET", "https://server1.nicholaspease.com/reports/liveatc.json", true);
@@ -149,13 +167,17 @@ function liveATCPreload() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status != 0) {
           ATC_AIRPORTS = JSON.parse(xhr.response)
-          selectState()
+          listState()
         } 
     }
     xhr.send();
 }
 
-function selectState() {
+function listState() {
+    document.getElementById("ATC_Data_List").innerHTML = ""
+    document.getElementById("ATC_State_Information").setAttribute("onclick","")
+    document.getElementById("ATC_State_Information").style.display = "none"
+    document.getElementById("ATC_Airport_Information").style.display = "none"
     for (state in ATC_AIRPORTS) {
         node = document.createElement("div")
         numOfFeeds = 0
@@ -166,7 +188,61 @@ function selectState() {
                 for (k in ATC_AIRPORTS[state].airports[i].feeds)
                     numOfFeeds++
         }
-        node.innerHTML = '<li class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+usStates[state]+'</span><span style="font-size: 24px">'+state+'</span><span class="mdl-list__item-sub-title">'+numofAirports+' Airports,<span style="margin-left: 5px;">'+numOfFeeds+' Feeds</span></span></span></li>'
+        node.innerHTML = '<li onclick="selectState(\''+state+'\')" class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+usStates[state]+'</span><span style="font-size: 24px">'+state+'</span><span class="mdl-list__item-sub-title">'+numofAirports+' Airports,<span style="margin-left: 5px;">'+numOfFeeds+' Feeds</span></span></span></li>'
         document.getElementById("ATC_Data_List").appendChild(node)
     }
 }
+
+function truncate(str, n){
+    return (str.length > n) ? str.slice(0, n-1) + '&hellip;' : str;
+  };
+
+function selectState(state) {
+    document.getElementById("ATC_State_Information").style.display = "block"
+    document.getElementById("ATC_Airport_Information").style.display = "none"
+    document.getElementById("ATC_State_Information").setAttribute("onclick","listState()")
+    document.getElementById("ATC_State_Information").innerHTML = '<span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+usStates[state]+'</span><span style="font-size: 24px">'+state+'</span>'
+    document.getElementById("ATC_Data_List").innerHTML = ""
+    for (airport in ATC_AIRPORTS[state].airports) {
+        node = document.createElement("div")
+        feeds = 0
+        for (i in ATC_AIRPORTS[state].airports[airport].feeds)
+            feeds++
+        node.innerHTML = '<li onclick="selectAirport(\''+state+'\',\''+airport+'\')" class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+airport+'</span><span style="font-size: 18px;text-overflow: ellipse;white-space: nowrap;overflow:hidden">'+truncate(ATC_AIRPORTS[state].airports[airport].name,30)+'</span><span class="mdl-list__item-sub-title">'+feeds+' Feeds</span></span></li>'
+        document.getElementById("ATC_Data_List").appendChild(node)
+    }
+}
+
+function selectAirport(state,airport) {
+    document.getElementById("ATC_State_Information").style.display = "block"
+    document.getElementById("ATC_Airport_Information").style.display = "block"
+    document.getElementById("ATC_Airport_Information").setAttribute("onclick","selectState('"+state+"')")
+    document.getElementById("ATC_Data_List").innerHTML = ""
+    document.getElementById("ATC_Airport_Information").innerHTML = '<span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+airport+'</span><span style="font-size: 18px;text-overflow: ellipse;white-space: nowrap;overflow:hidden">'+truncate(ATC_AIRPORTS[state].airports[airport].name,30)+'</span>'
+    for (feed in ATC_AIRPORTS[state].airports[airport].feeds) {
+        node = document.createElement("div")
+        node.innerHTML = '<li onclick="selectFeed(\''+state+'\',\''+airport+'\',\''+feed+'\')" class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 26px;text-overflow: ellipse;white-space: nowrap;overflow:hidden">'+truncate(ATC_AIRPORTS[state].airports[airport].feeds[feed].name,30)+'</span><span class="mdl-list__item-sub-title">'+ATC_AIRPORTS[state].airports[airport].location+'</span></span></span></li>'
+        document.getElementById("ATC_Data_List").appendChild(node)
+    }
+}
+
+function selectFeed(state,airport,feed) {
+    feed = ATC_AIRPORTS[state].airports[airport].feeds[feed]
+    re = /\/[^/]*\/([^.]*)/
+    console.log(re.exec(feed.url)[1]) //http://d.liveatc.net/
+    document.getElementById("player").setAttribute("src", "http://d.liveatc.net/"+re.exec(feed.url)[1])
+    document.getElementById("player").play()
+    document.getElementById("audioControl_CurrentFeedName").innerHTML = feed.name
+    window.setInterval(function () {
+        if (document.getElementById("player").readyState === 3 || document.getElementById("player").readyState === 4) {
+            document.getElementById("audioControl_CurrentFeedStatus").style.color = "green"
+            document.getElementById("audioControl_CurrentFeedStatusText").innerHTML = "Connected"
+        } else {
+            document.getElementById("audioControl_CurrentFeedStatus").style.color = "red"
+            document.getElementById("audioControl_CurrentFeedStatusText").innerHTML = "Disconnected"
+        }
+        var time = document.getElementById("player").currentTime
+        document.getElementById("audioControl_CurrentFeedTime").innerHTML = HHMMSS(time)
+    }, 1000)
+}
+

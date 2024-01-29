@@ -172,6 +172,8 @@ body {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 8px;
   line-height: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .ATC_State {
@@ -192,11 +194,27 @@ body {
 #ATC_Data {
     overflow: auto;
     max-height: 100%;
-    height: calc(100% - 100px);
+    height: 100%;
+}
+
+#ATC_Data > ul {
+  height: calc(100%);
 }
 
 #ATC_Data_List {
   margin-top: 0px;
   padding-top: 0px;
-  height: 100%;
+  width: 100%;
+}
+
+#ATC_State_Information {
+  margin: 10px 0px 0px 10px;
+}
+
+#ATC_Airport_Information {
+  margin: 10px 10px 0px 10px;
+}
+
+#player {
+  display: none;
 }

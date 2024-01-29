@@ -41,9 +41,13 @@
   </head>
   <body onload="onload()">
   <div id="sidebar">
-    <i class="material-icons" style="font-size: 30px;margin: 15px;">arrow_back_ios_new</i>
-    <span style="font-size:30px;font-weight: bold;margin: 15px;">Aircraft Radio</span>
-    <span style="font-size: 15px;margin: auto;">Powered By LiveATC</span>
+    <div>
+      <i class="material-icons" style="font-size: 30px;margin: 15px;">arrow_back_ios_new</i>
+      <span style="font-size:30px;font-weight: bold;margin: 15px;">Aircraft Radio</span>
+      <span style="font-size: 14px;margin: auto;">Powered By LiveATC</span>
+    </div>
+    <div id="ATC_State_Information"></div>
+    <div id="ATC_Airport_Information"></div>
     <hr>
     <div id="ATC_Data">
       <ul class="mdl-list" id="ATC_Data_List">
@@ -62,7 +66,7 @@
               <button class="mdl-button mdl-js-button mdl-button--raised" onclick="liveATC()">LiveATC</button>
               <button class="mdl-button mdl-js-button mdl-button--raised" onclick="settings()">Settings</button>
             </div>
-            <div id="header_atc" style="visibility: hidden">
+            <div id="header_atc" style="">
              <table>
               <tr>
                 <td> 
@@ -71,8 +75,11 @@
                   </button>
                 </td>
                 <td>
-                  <span id="audioControl_CurrentFeedName">KBGR - ATIS</span><br>
-                  <span id="audioControl_CurrentFeedStatus" style="color:green;">•</span><span id="audioControl_CurrentFeedStatusText">Disconnected</span> <span id="audioControl_CurrentFeedTimeFormatting">(<span id="audioControl_CurrentFeedTime">00:00:00</span>)</span>
+                  <span id="audioControl_CurrentFeedName"></span><br>
+                  <span id="audioControl_CurrentFeedStatus" style="color:red;">•</span><span id="audioControl_CurrentFeedStatusText">Disconnected</span> <span id="audioControl_CurrentFeedTimeFormatting">(<span id="audioControl_CurrentFeedTime">00:00:00</span>)</span>
+                  <audio id="player">
+                    <source type="audio/mpeg">
+                  </audio>
                 </td>
               </tr>
              </table>
