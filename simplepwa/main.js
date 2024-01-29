@@ -55,13 +55,22 @@ var usStates = {
 function main() {
     document.getElementById("main_tab").style.display = "block";
     document.getElementById("settings").style.display = "none";
+    document.getElementById("sidebar").style.display = "none";
     document.getElementById("header").style.left = "210px"
 }
 
 function settings() {
     document.getElementById("main_tab").style.display = "none";
     document.getElementById("settings").style.display = "block";
+    document.getElementById("sidebar").style.display = "none";
     document.getElementById("header").style.left = "2%"
+}
+
+function ATC() {
+    document.getElementById("main_tab").style.display = "block";
+    document.getElementById("sidebar").style.display = "flex";
+    document.getElementById("settings").style.display = "none";
+    document.getElementById("header").style.left = "10px"
 }
 
 function onload() {
@@ -211,6 +220,7 @@ function selectState(state) {
         node.innerHTML = '<li onclick="selectAirport(\''+state+'\',\''+airport+'\')" class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 40px;font-weight:100;width:40px;height:40px;margin-right: 30px;">'+airport+'</span><span style="font-size: 18px;text-overflow: ellipse;white-space: nowrap;overflow:hidden">'+truncate(ATC_AIRPORTS[state].airports[airport].name,30)+'</span><span class="mdl-list__item-sub-title">'+feeds+' Feeds</span></span></li>'
         document.getElementById("ATC_Data_List").appendChild(node)
     }
+    document.getElementById("ATC_Data").scrollTop = 0;
 }
 
 function selectAirport(state,airport) {
@@ -224,6 +234,7 @@ function selectAirport(state,airport) {
         node.innerHTML = '<li onclick="selectFeed(\''+state+'\',\''+airport+'\',\''+feed+'\')" class="mdl-list__item mdl-list__item--two-line"><span class="mdl-list__item-primary-content"><span style="font-size: 26px;text-overflow: ellipse;white-space: nowrap;overflow:hidden">'+truncate(ATC_AIRPORTS[state].airports[airport].feeds[feed].name,30)+'</span><span class="mdl-list__item-sub-title">'+ATC_AIRPORTS[state].airports[airport].location+'</span></span></span></li>'
         document.getElementById("ATC_Data_List").appendChild(node)
     }
+    document.getElementById("ATC_Data").scrollTop = 0;
 }
 
 function selectFeed(state,airport,feed) {
@@ -233,16 +244,28 @@ function selectFeed(state,airport,feed) {
     document.getElementById("player").setAttribute("src", "http://d.liveatc.net/"+re.exec(feed.url)[1])
     document.getElementById("player").play()
     document.getElementById("audioControl_CurrentFeedName").innerHTML = feed.name
+    document.getElementById("audioControl_CurrentFeedStatus").style.color = "orange"
+    document.getElementById("audioControl_CurrentFeedStatusText").innerHTML = "Connecting"
+    document.getElementById("ATC_Pause_Play_Icon").innerHTML = "pause"
     window.setInterval(function () {
         if (document.getElementById("player").readyState === 3 || document.getElementById("player").readyState === 4) {
             document.getElementById("audioControl_CurrentFeedStatus").style.color = "green"
             document.getElementById("audioControl_CurrentFeedStatusText").innerHTML = "Connected"
         } else {
-            document.getElementById("audioControl_CurrentFeedStatus").style.color = "red"
-            document.getElementById("audioControl_CurrentFeedStatusText").innerHTML = "Disconnected"
+            document.getElementById("audioControl_CurrentFeedStatus").style.color = "orange"
+            document.getElementById("audioControl_CurrentFeedStatusText").innerHTML = "Connecting"
         }
         var time = document.getElementById("player").currentTime
         document.getElementById("audioControl_CurrentFeedTime").innerHTML = HHMMSS(time)
-    }, 1000)
+    }, 500)
 }
 
+function pausePlay() {
+    if (document.getElementById("ATC_Pause_Play_Icon").innerHTML == "pause") {
+        document.getElementById("player").pause()
+        document.getElementById("ATC_Pause_Play_Icon").innerHTML = "play_arrow"
+    } else if (document.getElementById("ATC_Pause_Play_Icon").innerHTML == "play_arrow") {
+        document.getElementById("player").play()
+        document.getElementById("ATC_Pause_Play_Icon").innerHTML = "pause"
+    }
+}
