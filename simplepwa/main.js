@@ -56,6 +56,8 @@ function main() {
     document.getElementById("main_tab").style.display = "block";
     document.getElementById("settings").style.display = "none";
     document.getElementById("sidebar").style.display = "none";
+    document.getElementById("header_atc").style.display = "block";
+    document.getElementById("ATC_Button").style.display = "block";
     document.getElementById("header").style.left = "210px"
 }
 
@@ -63,13 +65,17 @@ function settings() {
     document.getElementById("main_tab").style.display = "none";
     document.getElementById("settings").style.display = "block";
     document.getElementById("sidebar").style.display = "none";
+    document.getElementById("header_atc").style.display = "none";
+    document.getElementById("ATC_Button").style.display = "block";
     document.getElementById("header").style.left = "2%"
 }
 
 function ATC() {
     document.getElementById("main_tab").style.display = "block";
     document.getElementById("sidebar").style.display = "flex";
+    document.getElementById("ATC_Button").style.display = "none";
     document.getElementById("settings").style.display = "none";
+    document.getElementById("header_atc").style.display = "block";
     document.getElementById("header").style.left = "10px"
 }
 
