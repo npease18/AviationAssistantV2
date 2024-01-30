@@ -105,7 +105,7 @@ document.getElementById("header").style.display = "block"
 
 function updateSettings() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://aa.local:5000/information", true);
+    xhr.open("GET", "https://aa.local:5000/information", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
@@ -125,7 +125,7 @@ function updateSettings() {
 
 function sendcommand(command) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://aa.local:5000/"+command, true);
+    xhr.open("GET", "https://aa.local:5000/"+command, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
