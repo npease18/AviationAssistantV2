@@ -85,7 +85,7 @@ function onload() {
     document.getElementById("main_tab").style.display = "block"
     liveATCPreload()
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://aa.local:5000/alive", true);
+    xhr.open("GET", "https://aa.local:5000/alive", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status != 0) {
