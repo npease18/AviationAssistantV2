@@ -1,0 +1,10 @@
+name: Gitea Pages
+run-name: Gitea Pages 
+on: [push]
+
+jobs:
+  Gitea-Pages:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"repo\": \"${{ gitea.repository }}\",\"branch\": \"main\"}" http://192.168.0.201:11003/pages'
+      - run: 'curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"repo\": \"${{ gitea.repository }}\"}" http://192.168.0.201:11003/changerepourl'
