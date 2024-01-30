@@ -62,4 +62,4 @@ def after_request(response):
 
 if __name__ == '__main__':
     context = ('/etc/lighttpd/ssl/aa.local.crt','/etc/lighttpd/ssl/aa.local.key')
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, ssl_context=context)
