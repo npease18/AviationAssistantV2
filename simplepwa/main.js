@@ -79,8 +79,7 @@ function ATC() {
     document.getElementById("header").style.left = "10px"
 }
 
-function onload() {
-    liveATCPreload()
+function onload() { 
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://aa.local:5000/alive", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -89,6 +88,7 @@ function onload() {
             document.getElementById("loading").style.display = "none"
             document.getElementById("header").style.display = "block"
             document.getElementById("main_tab").style.display = "block"
+            liveATCPreload()
             updateSettings()
             setInterval(updateSettings, 10000)
         } else if (xhr.readyState == 4) {
