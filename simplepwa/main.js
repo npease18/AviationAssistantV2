@@ -81,7 +81,7 @@ function ATC() {
 
 function onload() { 
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://aa.local:5000/alive", true);
+    xhr.open("GET", "https://aa.local:5000/alive?_="+Date.now(), true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status != 0) {
@@ -102,7 +102,7 @@ function onload() {
 
 function updateSettings() {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://aa.local:5000/information", true);
+    xhr.open("GET", "https://aa.local:5000/information?_="+Date.now(), true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
