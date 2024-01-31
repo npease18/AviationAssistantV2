@@ -80,6 +80,9 @@ function ATC() {
 }
 
 function onload() { 
+    document.getElementById("sidebar_back_button").addEventListener("click", function () {
+        main()
+    });
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://aa.local:5000/alive?_="+Date.now(), true);
     xhr.setRequestHeader('Content-Type', 'application/json');

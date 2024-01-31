@@ -40,9 +40,35 @@
     <script defer src="./main.js"></script>
   </head>
   <body onload="onload()">
-  <div id="sidebar" style="display: none">
+    <div id="header" style="left: 210px;display: none">
+      <div id="header_nav">
+        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="main()">tar1090</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="window.location.href = 'shortcuts://run-shortcut?name=OpenADSBWebLaunch'">OpenADSB</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="ATC()" id="ATC_Button">LiveATC</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised" onclick="settings()">Settings</button>
+      </div>
+      <div id="header_atc">
+       <table>
+        <tr>
+          <td> 
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="ATC_Pause_Play" onmouseup="pausePlay()">
+              <i class="material-icons" id="ATC_Pause_Play_Icon">stop</i>
+            </button>
+          </td>
+          <td>
+            <span id="audioControl_CurrentFeedName">No Feed Loaded</span><br>
+            <span id="audioControl_CurrentFeedStatus" style="color:red;">•</span><span id="audioControl_CurrentFeedStatusText">Disconnected</span> <span id="audioControl_CurrentFeedTimeFormatting">(<span id="audioControl_CurrentFeedTime">00:00:00</span>)</span>
+            <audio id="player">
+              <source type="audio/mpeg">
+            </audio>
+          </td>
+        </tr>
+       </table>
+      </div>
+    </div>
+    <div id="sidebar" style="display: none">
     <div>
-      <span onclick="main()"><i class="material-icons" style="font-size: 30px;margin: 15px;" onmouseup="main()">arrow_back_ios_new</i></span>
+      <span id="sidebar_back_button"><i class="material-icons" style="font-size: 30px;margin: 15px;z-index: 5;" >arrow_back_ios_new</i></span>
       <span style="font-size:30px;font-weight: bold;margin: 15px;">Aircraft Radio</span>
       <span style="font-size: 14px;margin: auto;">Powered By LiveATC</span>
     </div>
@@ -54,36 +80,10 @@
         
       </ul>
     </div>
-  </div>
-	<div id="loading" style="display: block">
-		<img id="loading_icon" src="images/loading.gif">
-		<br>Connecting to Aviation Assistant<br>Please Wait.
-	</div>
-    <div id="header" style="left: 210px;display: none">
-            <div id="header_nav">
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="main()">tar1090</button>
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="window.location.href = 'shortcuts://run-shortcut?name=OpenADSBWebLaunch'">OpenADSB</button>
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="ATC()" id="ATC_Button">LiveATC</button>
-              <button class="mdl-button mdl-js-button mdl-button--raised" onclick="settings()">Settings</button>
-            </div>
-            <div id="header_atc">
-             <table>
-              <tr>
-                <td> 
-                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" id="ATC_Pause_Play" onmouseup="pausePlay()">
-                    <i class="material-icons" id="ATC_Pause_Play_Icon">stop</i>
-                  </button>
-                </td>
-                <td>
-                  <span id="audioControl_CurrentFeedName">No Feed Loaded</span><br>
-                  <span id="audioControl_CurrentFeedStatus" style="color:red;">•</span><span id="audioControl_CurrentFeedStatusText">Disconnected</span> <span id="audioControl_CurrentFeedTimeFormatting">(<span id="audioControl_CurrentFeedTime">00:00:00</span>)</span>
-                  <audio id="player">
-                    <source type="audio/mpeg">
-                  </audio>
-                </td>
-              </tr>
-             </table>
-            </div>
+    </div>
+    <div id="loading" style="display: block">
+      <img id="loading_icon" src="images/loading.gif">
+      <br>Connecting to Aviation Assistant<br>Please Wait.
     </div>
     <div id="main_tab" style="display: none">
       <iframe src="https://aa.local/tar1090"></iframe>
