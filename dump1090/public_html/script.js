@@ -201,7 +201,7 @@ function fetchData() {
                         return;
                 }
 
-                FetchPending = $.ajax({ url: 'data/aircraft.json',
+                FetchPending = $.ajax({ url: 'data/aircraft.json?_='+Date.now(),
                                         timeout: 5000,
                                         cache: false,
                                         dataType: 'json' });
