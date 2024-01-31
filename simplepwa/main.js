@@ -80,9 +80,6 @@ function ATC() {
 }
 
 function onload() {
-    document.getElementById("loading").style.display = "none"
-    document.getElementById("header").style.display = "block"
-    document.getElementById("main_tab").style.display = "block"
     liveATCPreload()
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://aa.local:5000/alive", true);
@@ -90,7 +87,7 @@ function onload() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status != 0) {
             document.getElementById("loading").style.display = "none"
-document.getElementById("header").style.display = "block"
+            document.getElementById("header").style.display = "block"
             document.getElementById("main_tab").style.display = "block"
             updateSettings()
             setInterval(updateSettings, 10000)
@@ -247,7 +244,7 @@ function selectFeed(state,airport,feed) {
     feed = ATC_AIRPORTS[state].airports[airport].feeds[feed]
     re = /\/[^/]*\/([^.]*)/
     console.log(re.exec(feed.url)[1]) //http://d.liveatc.net/
-    document.getElementById("player").setAttribute("src", "http://d.liveatc.net/"+re.exec(feed.url)[1])
+    document.getElementById("player").setAttribute("src", "https://d.liveatc.net/"+re.exec(feed.url)[1])
     document.getElementById("player").play()
     document.getElementById("audioControl_CurrentFeedName").innerHTML = feed.name
     document.getElementById("audioControl_CurrentFeedStatus").style.color = "orange"
